@@ -13,41 +13,21 @@ function triangles(num) {
 // fizzBuzz ////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
   
-function fizzBuzz (start, end) {
-  for (let i = start; i <= end; i++) {
-  let output = ' ';
-  if (i % 3 === 0) {
-    output += 'fizz';
-  }
-  if (i % 5 === 0) {
-    output += 'buzz';
-  }
-  console.log(output || i);
+function fizzBuzz(start, end) {
+   for (let i = 1; i <= 100; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+      
+    }
+   }
 }
-  
-}
-
+    
 ////////////////////////////////////////////////////////////////////////////////
 // drawChessboard //////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
 function drawChessboard() {
-  let chessboard = '';
-for (let row = 0; row < size; row++) {
-  for (let col = 0; col < size; col++) {
-    if ((row + col) % 2 === 0) {
-       chessboard += '';
-    } else {
-      chessboard += '#';
-    }
-  }
- chessboard += '\n';
-  }
-return chessboard;
+
 }
-let size = 8;
-let chessboard = drawChessboard(size);
-console.log(chessboard);
 
 ////////////////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE //////////////////////////////////////////////////////
