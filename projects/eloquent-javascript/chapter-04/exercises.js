@@ -2,39 +2,76 @@
 // range ///////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function range(start, end, step) {
+function range(start, end, step = 1) {
+  let array = [];
+  if (start === end) {
+    return array;
+  }
+    if (step > 0) {
+      for (let i = start; i <= end; i += step) {
+        array.push(i);
+      }
+  } else {
+    for (let i = start; i >= end; i += step) {
+      array.push(i);
+    }
+  }
+     return array;
 
 }
+console.log(range(1, 10));
+console.log(range(5, 2, -1));
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // sum /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function sum() {
+function sum(numbers) {
+  let total = 0;
+  for (let number of numbers) {
+    total += number;
+  }
+  return total;
 
 }
-
+console.log(sum(range(1, 10)));
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArray ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArray() {
-
+function reverseArray(array) {
+  let newArray = [];
+  for (let i = array.length - 1; i >= 0; i--) {
+      newArray.push(array[i]);
+  }
+    return newArray;
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // reverseArrayInPlace /////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function reverseArrayInPlace() {
-
+function reverseArrayInPlace(array) {
+  for (let i = 0; i < Math.floor(array.length / 2); i++) {
+    let temp = array[i];
+    array[i] = array[array.length - 1 - i];
+    array[array.length - 1 - i] = temp;
+  }
+      return array;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // arrayToList /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function arrayToList() {
+function arrayToList(array) {
+  let list = null;
+  for (let i = array.length - 1; i >= 0; i--) {
+    list = { value: array[i], rest: list };
+  }
+    return list;
 
 }
 
@@ -42,15 +79,20 @@ function arrayToList() {
 // listToArray /////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function listToArray() {
-
+function listToArray(list) {
+  let array = [];
+  for (let node = list; node; node = node.rest) {
+    array.push(node.value);
+  }
+     return array;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // prepend /////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function prepend() {
+function prepend(element, list) {
+  return { value: element, rest: list };
 
 }
 
@@ -58,7 +100,15 @@ function prepend() {
 // nth /////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function nth() {
+function nth(list, n) {
+  if (!list) {
+    return undefined;
+  } else if (n === 0) {
+    return list.value;
+  } else {
+    return nth(list.rest, n - 1);
+  
+  }
 
 }
 
@@ -66,8 +116,28 @@ function nth() {
 // deepEqual ///////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-function deepEqual() {
-
+function deepEqual(a, b) {
+// Check if the values are the same or if they are objects
+if (a === b) {
+  return true;
+}
+if (typeof a !== 'object' || a === null || typeof b !== 'object' || b === null) {
+  return false;
+}
+//Get the property names of both
+let keysA = Object.keys(a);
+let keysB = Object.keys(b);
+// Check if the objects have the same number of properties
+if (keysA.length !== keysB.length) {
+  return false;
+}
+// Check if all properties in A exist in B and have the same values
+for (let key of keysA) {
+  if (!keysB.includes(key) || !deepEqual(a[key], b[key])) {
+    return false;
+  }
+}
+    return true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
